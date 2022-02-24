@@ -1,17 +1,16 @@
 import React from 'react'
-import {Edit, SimpleForm, TextInput, DateInput} from 'react-admin'
+import {Create, SimpleForm, TextInput, DateInput} from 'react-admin'
 
-const PostEdit = (props) => {
+const PostCreate = (props) => {
     return (
-    <Edit title='Edit Post' {...props}>
+    <Create title='Create a Occurrence' {...props}>
         <SimpleForm>
-            <TextInput disabled source = 'id'/>   
             <TextInput source = 'title'/>
             <TextInput multiline source = 'body'/>
             <DateInput label='Published' source = 'publishedAt'/>
         </SimpleForm>
-    </Edit>
+    </Create>
     )
 }
 
-export default PostEdit
+export default PostCreate

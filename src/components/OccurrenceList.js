@@ -1,15 +1,15 @@
 import React from 'react'
 import {List, Datagrid, TextField, DataField, EditButton, DeleteButton, DateField} from 'react-admin'
-const PostList = (props) => {
+const OccurrenceList = (props) => {
     return <List {... props}>
         <Datagrid>
             <TextField source='id' />
             <TextField source='title' />
             <DateField source='publishedAt' />
-            <EditButton basePath='/posts' />
-            <DeleteButton basePath='/posts' />
+            <EditButton basePath='/occurrences' />
+            <DeleteButton basePath='/occurrences' />
         </Datagrid>
     </List>
 }
 
-export default PostList
+export default OccurrenceList
