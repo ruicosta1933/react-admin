@@ -1,24 +1,20 @@
-import { Admin, Resource } from 'react-admin'
-import restProvider from 'ra-data-simple-rest'
-import OccurrencesList from './components/OccurrenceList'
-import OccurrencesCreate from './components/OccurrenceCreate'
-import OccurrencesEdit from './components/OccurrenceEdit'
+// in src/App.js
+import * as React from "react";
+import { Admin, Resource } from 'react-admin';
+import { PostList, PostEdit, PostCreate } from './posts';
+import { UserList } from './users';
+import jsonServerProvider from 'ra-data-json-server';
+import Dashboard from './Dashboard';
+import authProvider from './authProvider';
+import PostIcon from '@material-ui/icons/Book';
+import UserIcon from '@material-ui/icons/Group';
 
-import UsersList from './components/UsersList'
-import UsersCreate from './components/UsersCreate'
-import UsersEdit from './components/UsersEdit'
-
-
-import OccurrencesIcon from '@material-ui/icons/BookOutlined';
-import UserIcon from '@material-ui/icons/PeopleOutline';
-
-function App() {
-  return (
-   <Admin dataProvider={restProvider('http://localhost:3000')}>
-     <Resource name="occurrences" list={OccurrencesList} create={OccurrencesCreate} edit={OccurrencesEdit} icon={OccurrencesIcon}/>
-     <Resource name="users" list={UsersList} create={UsersCreate} edit={UsersEdit} icon={UserIcon}/>
-   </Admin>
-  );
-}
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+const App = () => (
+  <Admin dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
+      <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon}/>
+      <Resource name="users" list={UserList} icon={UserIcon}/>
+  </Admin>
+);
 
 export default App;
