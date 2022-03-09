@@ -1,23 +1,27 @@
-import ToggleButton from 'react-toggle-button'
-import { useEffect, useState } from 'react';
-import Switch from '@material-ui/core/Switch';
-import ToogleTheme from './ToogleTheme'
+import * as React from 'react';
+import { useTheme, ThemeProvider, createTheme } from '@material-ui/core/styles';
 
+export default function ToggleColorMode() {
+  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
 
-  function SwitchButton() {
-    // And now you can use hooks
-    // But only inside your functional component's
-    // body
-    
-     const [check, setCheck ] = useState(true)
-     
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
 
-    return (
-      <Switch onChange={() => {
-          setCheck(!check);
-          ToogleTheme(check)
-      }}/>
-    );
-  }
-  export default SwitchButton
+  return (theme);
+}
     
